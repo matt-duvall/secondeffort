@@ -1,4 +1,8 @@
 Secondeffort::Application.routes.draw do
+  root "page#index"
+  #get "page/index"
+  get "/about"=>"page#about"
+  get "/legalese"=>"page#legalese"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
