@@ -1,4 +1,6 @@
 Secondeffort::Application.routes.draw do
+  resources :pins
+
   root "page#index"
   #get "page/index"
   get "/about"=>"page#about"
