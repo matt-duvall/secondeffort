@@ -19,24 +19,36 @@
     </button>
     <a class="navbar-brand" href="/">A second effort...</a>
   </div>
+
 <form class="navbar-form navbar-left" role="search">
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search">
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+<font color="white"><%= current_user.email %></font>
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li> 
-      <li><a href="/legalese">Legal</a></li>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Pins", pins_path %></li> 
+      <% if user_signed_in? %>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+      <% end %> 
+      <li><%= link_to "About", about_path %></li> 
+      <li><%= link_to "Legal", legalese_path %></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
 
 
 <div class="container">
+  <% flash.each do |name, msg| %>
+    <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% end %>
 <%= yield %>
 </div>
 

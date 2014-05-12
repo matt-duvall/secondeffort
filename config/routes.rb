@@ -1,10 +1,12 @@
 Secondeffort::Application.routes.draw do
+  devise_for :users
   resources :pins
 
   root "page#index"
   #get "page/index"
   get "/about"=>"page#about"
   get "/legalese"=>"page#legalese"
+  get "/pins"=>"pins#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

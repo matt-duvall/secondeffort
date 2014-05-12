@@ -1,27 +1,39 @@
-<h1>Listing pins</h1>
+<% if user_signed_in? %>
+  <h1>Listing pins</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pins.each do |pin| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= pin.description %></td>
-        <td><%= link_to 'Show', pin %></td>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @pins.each do |pin| %>
+        <tr>
+          <td><%= pin.description %></td>
+          <td><%= link_to 'Show', pin %></td>
+          <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
+          <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Pin', new_pin_path %>
+  <br>
+
+  <%= link_to 'New Pin', new_pin_path %>
+<% else %>
+  <div class="jumbotron">
+    <h1>Welcome to my second efforts</h1>
+    
+    <p>
+      <a class="btn btn-primary btn-lg" role="button" href="/users/sign_in"><span class="glyphicon glyphicon-fire"></span> Sign in</a>
+      <a class="btn btn-danger btn-lg" role="button" href="/users/sign_up">Sign up</a>
+      
+    </p>
+  </div>
+<% end %>
