@@ -16,9 +16,14 @@
         <tr>
           <td><%= pin.description %></td>
           <td><%= time_ago_in_words pin.created_at %></td>
-          <td><%= link_to 'Show', pin %></td>
-          <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-          <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= pin.user.try( :email ) %></td>
+          <% if current_user == pin.user %>
+            <td><%= link_to 'Show', pin %></td>
+            <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
+            <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td></td><td></td><td></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
